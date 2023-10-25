@@ -17,14 +17,12 @@ jobs:
   
       steps:
       - uses: actions/checkout@v3
-      - name: Build the Docker image
-        run: docker-compose build --no-cache --force-rm 
-    test:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2
-        - name: Test the Docker image
-          run: docker-compose up -d 
+      - name: Get current date # get the date of the build
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d--%M-%S')"    
+      - name: Build the Docker image # push The image to the docker hub
+        run: docker build . --file Dockerfile --tag $DOCKER_USER/$REPO_NAME:${{ steps.date.outputs.date }}
+
     push_to_registry:
       name: Push Docker image to Docker Hub
       runs-on: ubuntu-latest
