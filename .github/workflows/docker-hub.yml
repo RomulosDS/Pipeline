@@ -18,7 +18,7 @@ jobs:
       steps:
         - uses: actions/checkout@v3   
         - name: Build the Docker image # push The image to the docker hub
-          run: docker build . --file Dockerfile --tag $DOCKER_USER/$REPO_NAME
+          run: docker build . --file Dockerfile --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
     push_to_registry:
       name: Push Docker image to Docker Hub
