@@ -17,7 +17,7 @@ jobs:
       steps:
         - uses: actions/checkout@v3   
         - name: Build the Docker image # push The image to the docker hub
-          run: docker build . --file Dockerfile --tag $DOCKER_USER/$REPO_NAME
+          run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USER}}/${{secrets.REPO_NAME}}
 
     push_to_registry:
       name: Push Docker image to Docker Hub
@@ -39,7 +39,7 @@ jobs:
           id: meta
           uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
           with:
-            images: $DOCKER_USER/$REPO_NAME
+            images: ${{secrets.DOCKER_USER}}/${{secrets.REPO_NAME}}
   
         - name: Build and push Docker image
           uses: docker/build-push-action@v2
