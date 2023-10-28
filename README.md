@@ -1,2 +1,2 @@
 # Pipeline
-Aula sobre pipelines
+Aula sobre pipelines - práticas
