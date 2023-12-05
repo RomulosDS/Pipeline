@@ -1,2 +1,2 @@
 # Pipeline
-Aula sobre pipelines - práticas
+Aula sobre CI/CD - práticas
